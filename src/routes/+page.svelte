@@ -1,17 +1,10 @@
 <script lang="ts">
 	import CanvasPortal from '$lib/Components/CanvasPortal.svelte';
-	import CanvasInteractivity from '$lib/Components/CanvasInteractivity.svelte';
 	import { T } from '@threlte/core';
-	//import { interactivity } from '@threlte/extras';
-	import { Spring } from 'svelte/motion';
-
-	//interactivity()
-	const scale = new Spring(1);
 </script>
 
 <!-- 3D content -->
 <CanvasPortal>
-  <CanvasInteractivity />
 	<T.PerspectiveCamera
 		makeDefault
 		position={[10, 10, 10]}
@@ -19,16 +12,7 @@
 			ref.lookAt(0, 1, 0);
 		}}
 	/>
-	<T.Mesh
-	  position.y={1}
-  	scale={scale.current}
-    onpointerenter={() => {
-      scale.target = 1.5
-    }}
-    onpointerleave={() => {
-      scale.target = 1
-    }}
-	>
+	<T.Mesh>
 		<T.BoxGeometry args={[1, 1, 1]} />
 		<T.MeshBasicMaterial color="red" />
 	</T.Mesh>

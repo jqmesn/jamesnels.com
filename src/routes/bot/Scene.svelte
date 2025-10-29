@@ -1,15 +1,28 @@
-<script>
-  import { T, useTask } from '@threlte/core'
-  import { interactivity } from '@threlte/extras'
-  import { Spring } from 'svelte/motion'
+<script lang="ts">
+  import { T } from '@threlte/core'
+  import { Gizmo, OrbitControls } from '@threlte/extras'
 
-  interactivity()
-  const scale = new Spring(1)
 
-  let rotation = $state(0)
-  useTask((delta) => {
-    rotation += delta
-  })
+  interface Props {
+      autoRotate: boolean
+      enableDamping: boolean
+      rotateSpeed: number
+      zoomToCursor: boolean
+      zoomSpeed: number
+      minPolarAngle: number
+      maxPolarAngle: number
+      enableZoom: boolean
+    }
+  let {
+    autoRotate,
+    enableDamping,
+    rotateSpeed,
+    zoomToCursor,
+    zoomSpeed,
+    minPolarAngle,
+    maxPolarAngle,
+    enableZoom
+  }: Props = $props()
 </script>
 
 <T.PerspectiveCamera
@@ -18,15 +31,27 @@
   oncreate={(ref) => {
     ref.lookAt(0, 1, 0)
   }}
-/>
+>
+
+  <OrbitControls
+    {enableDamping}
+    {autoRotate}
+    {rotateSpeed}
+    {zoomToCursor}
+    {zoomSpeed}
+    {minPolarAngle}
+    {maxPolarAngle}
+    {enableZoom}
+  >
+    <Gizmo />
+  </OrbitControls>
+</T.PerspectiveCamera>
+
+<T.GridHelper args={[10, 10]} />
 
 <T.Mesh
-  rotation.y = {rotation}
-  position.y={0}
-  scale={scale.current}
-  onpointerenter={() => scale.target = 1.5}
-  onpointerleave={() => scale.target = 1}
+  position.y={1}
 >
-  <T.BoxGeometry args={[1, 1, 1]} />
+  <T.BoxGeometry args={[2,2,2]} />
   <T.MeshBasicMaterial color="red" />
 </T.Mesh>
