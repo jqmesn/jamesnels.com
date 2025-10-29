@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from '@threlte/core'
-  import { Gizmo, OrbitControls } from '@threlte/extras'
+  import { Environment, Gizmo, OrbitControls, GLTF } from '@threlte/extras'
 
 
   interface Props {
@@ -24,6 +24,8 @@
     enableZoom
   }: Props = $props()
 </script>
+
+<Environment url="src/lib/assets/textures/roof_garden_4k.exr" />
 
 <T.PerspectiveCamera
   makeDefault
@@ -53,5 +55,7 @@
   position.y={1}
 >
   <T.BoxGeometry args={[2,2,2]} />
-  <T.MeshBasicMaterial color="red" />
+  <T.MeshBasicMaterial color="red" wireframe/>
 </T.Mesh>
+
+<GLTF url="src/lib/assets/models/BeeconBlender.glb"/>
