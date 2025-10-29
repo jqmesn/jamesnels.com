@@ -36,5 +36,18 @@
 		"typescript": "^5.9.2",
 		"typescript-eslint": "^8.44.1",
 		"vite": "^7.1.7"
+	},
+	"dependencies": {
+		"@dimforge/rapier3d-compat": "^0.19.2",
+		"@theatre/core": "^0.7.2",
+		"@theatre/studio": "^0.7.2",
+		"@threlte/core": "^8.1.8",
+		"@threlte/extras": "^9.5.5",
+		"@threlte/flex": "^2.0.6",
+		"@threlte/rapier": "^3.1.5",
+		"@threlte/theatre": "^3.0.7",
+		"@types/three": "^0.180.0",
+		"@yushijinhun/three-minifier-rollup": "^0.4.0",
+		"three": "^0.180.0"
 	}
 }
